@@ -15,4 +15,6 @@ int main()
     printf("입력된 숫자는(c) : %d\n", num);
     std::cin >> num;
     printf("입력된 숫자는(c++) : %d\n", num);
+
+    printf("123123");//변경2
 }
