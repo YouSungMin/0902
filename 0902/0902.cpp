@@ -10,11 +10,13 @@ int main()
     printf("00년생입니다.\"\n");
     printf("□□□□□□□□□□□□□□□□□□□□□□□□");*/
 
-    int num = 0;
-    scanf("%d", &num);
+    
+    /*scanf("%d", &num);
     printf("입력된 숫자는(c) : %d\n", num);
     std::cin >> num;
-    printf("입력된 숫자는(c++) : %d\n", num);
+    printf("입력된 숫자는(c++) : %d\n", num);*/
+
+    int num = 0;
 
     printf("123123");//변경2
     //변경3
