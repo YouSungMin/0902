@@ -97,4 +97,84 @@ int main()
     tens = num1 % 100 / 10;
     ones = num1 % 100 % 10;
     printf("%d의 100의 자리는 %d, 10의 자리는 %d, 1의 자리는 %d 입니다.", num1,hundreds, tens, ones);*/
+
+    //1번
+    /*int num = 0;
+    printf("숫자를 입력해주세요 : ");
+    std::cin >> num;
+    if (num == 0)
+        printf("0입니다.");
+    else
+        num > 0 ? printf("양수입니다.") : printf("음수입니다.");*/
+
+     //2번
+     /*int num = 0;
+     printf("숫자를 입력해주세요 : ");
+     std::cin >> num;
+     if (num == 0)
+         printf("0입니다.");
+     else
+         num %2 == 0 ? printf("짝수입니다.") : printf("홀수입니다.");*/
+
+     //3번
+     /*int num1 = 0, num2 = 0;
+     printf("첫 번째 숫자를 입력해주세요 :");
+     std::cin >> num1;
+     printf("두 번째 숫자를 입력해주세요 :");
+     std::cin >> num2;
+
+     if (num1 == num2)
+         printf("같은 수 입니다.");
+     else
+         num1 > num2 ? printf("큰 수는 %d 입니다.", num1) : printf("큰 수는 %d 입니다.", num2);*/
+
+     //4번
+     /*int age = 0, height = 0;
+     printf("나이를 입력해주세요 :");
+     std::cin >> age;
+     printf("키를 입력해주세요 :");
+     std::cin >> height;
+
+     if(age >=6 && height >=120)
+         printf("롤러코스터 탑승 가능");
+     else
+         printf("롤러코스터 탑승 불가능");*/
+
+     //5번
+     /*int score = 0;
+     printf("점수를 입력해주세요 : ");
+     std::cin >> score;
+     switch (score/10)
+     {
+     case 10:
+     case 9:
+         printf("A");
+         break;
+     case 8:
+         printf("B");
+         break;
+     case 7:
+         printf("C");
+         break;
+     case 6:
+         printf("D");
+         break;
+     default:
+         printf("F");
+         break;
+     }*/
+
+     //6번
+     /*int Score1 = 0, Score2 = 0, Score3 = 0;
+     printf("첫 번째 과목의 점수를 입력해주세요 :");
+     std::cin >> Score1;
+     printf("두 번째 과목의 점수를 입력해주세요 :");
+     std::cin >> Score2;
+     printf("세 번째 과목의 점수를 입력해주세요 :");
+     std::cin >> Score3;
+
+     if (Score1 < 40 || Score2 < 40 || Score3 < 40)
+         printf("불합격");
+     else
+         ((Score1 + Score2 + Score3) / 3 >= 60) ? printf("합격") : printf("불합격");*/
 }
