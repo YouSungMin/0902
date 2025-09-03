@@ -89,12 +89,12 @@ int main()
     printf("500원 : %d개, 100원 : %d개, 50원 : %d개, 10원 : %d개", coin500, coin100, coin50, coin10);*/
 
     //8번
-    num1 = 0;
+    /*num1 = 0;
     int hundreds = 0, tens = 0 ,ones = 0;
     printf("숫자를 입력해주세요(최대 999):");
     std::cin >> num1;
     hundreds = num1 / 100;
     tens = num1 % 100 / 10;
     ones = num1 % 100 % 10;
-    printf("%d의 100의 자리는 %d, 10의 자리는 %d, 1의 자리는 %d 입니다.", num1,hundreds, tens, ones);
+    printf("%d의 100의 자리는 %d, 10의 자리는 %d, 1의 자리는 %d 입니다.", num1,hundreds, tens, ones);*/
 }
