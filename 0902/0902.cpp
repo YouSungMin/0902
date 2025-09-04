@@ -2,8 +2,11 @@
 #include <iostream>
 #include "header.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <string>
+#include <random>
+#include <time.h>
 
 int main()
 {
@@ -224,6 +227,30 @@ int main()
             printf("While %d", Count);
             Count++;
         } while ((Count % 3) != 0);*/
+    /*std::random_device RandomDivece;
+    std::mt19937 Generate(RandomDivece());
+
+    printf("균등 분포 : ");
+    std::uniform_int_distribution<> uniformDis(1,100);
+    for (int i = 0; i < 10; i++) {
+        int Number = uniformDis(Generate);
+        printf("%d",Number);
+        if(i<9)
+        printf(", ");
+    }
+    printf("\n");
+
+    printf("정규 분포 : ");
+    std::normal_distribution<> normalDis(80,10);
+    for (int i = 0; i < 10; i++) {
+        float Number = normalDis(Generate);
+        printf("%.2f", Number);
+        if (i < 9)
+            printf(", ");
+    }
+    printf("\n");*/
+
+
     //간단실습
  
     //int num=0;
@@ -289,4 +316,270 @@ int main()
         }
         printf("\n");
     }*/
+
+    //0904실습
+
+    //1번
+    /*std::random_device RandomDivece;
+    std::mt19937 Generate(RandomDivece());
+    std::uniform_int_distribution<> uniformDis(1, 6);
+
+    int Count = 0;
+    for (int i = 0; i < 1000000; i++) {
+        int Number = uniformDis(Generate);
+        //printf("%d ",Number);
+        if(Number == 6)
+            Count++;
+    }
+    printf("\n6은 %d번 나왔습니다.",Count);
+    */
+    //2번
+    /*enum SRP {
+        Scissors=1,
+        Rock,
+        Paper
+    };
+    int Player_WinScore=0;
+    int Computer_WinScore=0;
+    int Player_Input = 0;
+    std::random_device RandomDivece;
+    std::mt19937 Generate(RandomDivece());
+    std::uniform_int_distribution<> uniformDis(1, 3);
+
+    while (Player_WinScore < 3 && Computer_WinScore < 3){
+        printf("가위(1), 바위(2) ,보(3) 중 하나를 입력해 주세요 : ");
+        std::cin>>Player_Input;
+        int Computer_Input = uniformDis(Generate);
+
+        if(Player_Input == Computer_Input)
+            printf("비겼습니다, 컴퓨터:%d 플레이어:%d\n",Computer_Input, Player_Input);
+        else {
+            if ((Player_Input == Scissors && Computer_Input == Rock) ||
+                (Player_Input == Rock && Computer_Input == Paper) ||
+                (Player_Input == Paper && Computer_Input == Scissors)) {
+                printf("플레이어 패배, 컴퓨터:%d 플레이어:%d\n",Computer_Input,Player_Input);
+                Computer_WinScore++;
+            }
+            else {
+                printf("플레이어 승리, 컴퓨터:%d 플레이어:%d\n", Computer_Input, Player_Input);
+                Player_WinScore++;
+            }
+        }
+    }
+    if(Player_WinScore == 3)
+        printf("플레이어 최종승리 , 플레이어 이긴횟수:%d, 컴퓨터 이긴횟수:%d", Player_WinScore, Computer_WinScore);
+    else
+        printf("컴퓨터 최종승리, 플레이어 이긴횟수:%d, 컴퓨터 이긴횟수:%d", Player_WinScore, Computer_WinScore);*/
+
+    //3번
+    /*std::random_device RandomDivece;
+    std::mt19937 Generate(RandomDivece());
+    std::uniform_int_distribution<> uniformDis(1, 100);
+    int Number = uniformDis(Generate);
+    int InputNumber = 0;
+    int flag = 1;
+    printf("숫자를 입력해주세요 (1~100) : ");
+    //printf("%d",Number);
+    for (int i = 4; i >= 0; i--) {
+        std::cin >> InputNumber;
+        if(InputNumber == Number){
+            printf("정답입니다. 입력한 숫자: %d, 정답: %d , 남은횟수: %d\n",InputNumber,Number,i);
+            flag = 0;
+            break;
+        }
+        else if (InputNumber > Number) {
+            printf("오답입니다 입력한 숫자보다 작습니다. 입력한 숫자: %d, 남은횟수: %d\n",InputNumber,i);
+        }
+        else
+            printf("오답입니다 입력한 숫자보다 큽니다. 입력한 숫자: %d, 남은횟수: %d\n",InputNumber,i);
+    }
+    if (flag == 1) {
+        printf("패배하셨습니다. 정답은 %d 입니다.",Number);
+    }*/
+
+    //4번
+    /*enum Item
+    {
+        HPP=1,
+        Gun=2,
+        Bat=4,
+        Key=8
+    };
+    int inventory=0;
+    int endflag = 0;
+    int InputNumber=0;
+    int ThrowItem = 0;
+
+    while (endflag != 1) {
+        printf("인벤토리에 넣을 아이템을 선택: 1.물약 2.권총 3.야구배트 4.열쇠 5.버리기 0.종료:");
+        std::cin>>InputNumber;
+
+        switch (InputNumber)
+        {
+        case 1:
+            inventory = inventory | HPP;
+            printf("물약을 인벤토리에 넣었습니다.\n");
+            break;
+        case 2:
+            inventory = inventory | Gun;
+            printf("권총을 인벤토리에 넣었습니다.\n");
+            break;
+        case 3:
+            inventory = inventory | Bat;
+            printf("야구배트를 인벤토리에 넣었습니다.\n");
+            break;
+        case 4:
+            inventory = inventory | Key;
+            printf("열쇠를 인벤토리에 넣었습니다.\n");
+            break;
+        case 5:
+            printf("사용할 아이템을 선택 : 1.물약 2.권총 3.야구배트 4.열쇠");
+            std::cin>>ThrowItem;
+            if (ThrowItem == 1) {
+                inventory = inventory ^ HPP;
+                printf("물약를 사용하였습니다.\n");
+            }
+            else if (ThrowItem == 2) {
+                inventory = inventory ^ Gun;
+                printf("권총을 사용하였습니다.\n");
+            }
+            else if (ThrowItem == 3) {
+                inventory = inventory ^ Bat;
+                printf("야구배트를 사용하였습니다.\n");
+            }
+            else if (ThrowItem == 4) {
+                inventory = inventory ^ Key;
+                printf("열쇠를 사용하였습니다.\n");
+            }
+            else
+        case 0:
+            endflag = 1;
+            break;
+        default:
+            break;
+        }
+    }*/
+
+    //5번
+    /*std::random_device RandomDivece;
+    std::mt19937 Generate(RandomDivece());
+    std::uniform_int_distribution<> uniformDis(1, 6);
+
+
+    srand(time(NULL));
+    int PlayerDice = uniformDis(Generate);
+    int ComputerDice = uniformDis(Generate);
+    
+    int PlayerMoney=10000;
+    int ComputerMoney=10000;
+    
+    int PlayerDiceSum = 0;
+    int ComputerDiceSum = 0;
+
+    int Betting=0;
+    int BettingEnd = 0;
+    int GameEnd = 0;
+
+    while (PlayerMoney > 0 && ComputerMoney > 0)
+    {
+        if (PlayerDice > ComputerDice) {
+            printf("첫번째 플레이어의 주사위 눈 : %d , 컴퓨터의 주사위 눈: %d , 플레이어 승리 컴퓨터가 배팅합니다.\n", PlayerDice, ComputerDice);
+            do {
+               Betting = rand() % ComputerMoney;
+            }
+            while(Betting > PlayerMoney);
+            printf("배팅 금액은 %d원 입니다.\n", Betting);
+            PlayerDiceSum += PlayerDice;
+            ComputerDiceSum += ComputerDice;
+        }
+        else if (PlayerDice < ComputerDice) {
+            printf("첫번째 플레이어의 주사위 눈 : %d , 컴퓨터의 주사위 눈: %d , 컴퓨터 승리 플레이어가 배팅합니다.\n", PlayerDice, ComputerDice);
+            while(BettingEnd == 0){
+                printf("배팅 금액을 입력해주세요: ");
+                std::cin >> Betting;
+                if (Betting > PlayerMoney || Betting > ComputerMoney) {
+                    printf("배팅 금액이 큽니다 다시 입력해주세요.");
+                }
+                else {
+                    break;
+                }
+            }
+            printf("배팅 금액은 %d원 입니다.\n", Betting);
+            PlayerDiceSum += PlayerDice;
+            ComputerDiceSum += ComputerDice;
+        }
+        else {
+            printf("첫번째 주사위눈이 같습니다. 주사위를 다시 굴립니다.\n");
+            PlayerDice = uniformDis(Generate);
+            ComputerDice = uniformDis(Generate);
+        }
+
+        PlayerDice = uniformDis(Generate);
+        ComputerDice = uniformDis(Generate);
+
+        PlayerDiceSum += PlayerDice;
+        ComputerDiceSum += ComputerDice;
+
+        if (PlayerDiceSum > ComputerDiceSum) {
+            printf("두번째 플레이어의 주사위 눈 : %d , 컴퓨터의 주사위 눈: %d , 플레이어 승리 .\n", PlayerDiceSum, ComputerDiceSum);
+            PlayerMoney +=Betting;
+            ComputerMoney -=Betting;
+            printf("플레이어 남은금액: %d , 컴퓨터 남은금액: %d\n",PlayerMoney,ComputerMoney);
+        }
+        else if (PlayerDiceSum < ComputerDiceSum) {
+            printf("두번째 플레이어의 주사위 눈 : %d , 컴퓨터의 주사위 눈: %d , 컴퓨터 승리.\n", PlayerDiceSum, ComputerDiceSum);
+            PlayerMoney -= Betting;
+            ComputerMoney += Betting;
+            printf("플레이어 남은금액: %d , 컴퓨터 남은금액: %d\n", PlayerMoney, ComputerMoney);
+        }
+        else {
+            printf("주사위눈이 같습니다. 게임을 재시작합니다.\n");
+        }
+        PlayerDiceSum = 0;
+        ComputerDiceSum = 0;
+        Betting = 0;
+    }
+    if(PlayerMoney > ComputerMoney)
+        printf("게임이 종료되었습니다. 플레이어 승리");
+    else
+        printf("게임이 종료되었습니다. 컴퓨터 승리");*/
+
+    //6번
+
+    srand(time(NULL));
+
+    int PlayerMoney = 100;
+    int ComputerMoney = 100;
+    int PlayerChoice = 0;
+    int ComputerHoljjak = 0;
+    int Betting = 0;
+    int WinStreakChoice = 0;
+
+    while (PlayerMoney > 100 && ComputerMoney > 100) {
+        printf("게임시작\n");
+        printf("플레이어 남은금액 %d\n",PlayerMoney);
+        printf("홀(1), 짝(2)를 선택해주세요 : ");
+        std::cin>>PlayerChoice;
+        ComputerHoljjak = rand()%2 +1;
+        if (ComputerHoljjak == PlayerChoice) {
+            printf("컴퓨터가 뽑은 결과는 %d 입니다. 맞추셨습니다.",ComputerHoljjak);
+            
+            while (WinStreakChoice != 2){
+                printf("1. 연승 도전 , 2. 금액 받기");
+                std::cin >> WinStreakChoice;
+                if(WinStreakChoice == 1){
+                    
+                }
+                else{
+                    
+                }
+            }
+        }
+        else{
+            printf("컴퓨터가 뽑은 결과는 %d 입니다. 틀리셨습니다.", ComputerHoljjak);
+                PlayerMoney -=100;
+            }
+    }
+
+
 }
