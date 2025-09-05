@@ -82,7 +82,7 @@ int main()
     }*/
 
     //6번
-    enum {
+   /* enum {
         key = 1 << 0,
         fuse = 1 << 1,
         book = 1 << 2,
@@ -134,7 +134,7 @@ int main()
             printf("노트 ");
         }
         printf("\n");
-    }
+    }*/
 
     //7번
     /*int Number = 0;
@@ -165,4 +165,11 @@ int main()
 
     //팩토리얼
     //printf("%d",factorial(5));
+
+    //Practice09061();
+    //Practice09062();
+    //Practice09063();
+    //Practice09064();
+    //Practice09065();
+    Practice09066();
 }

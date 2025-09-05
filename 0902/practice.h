@@ -13,13 +13,11 @@ T Min(T Number1, T Number2)
 {
 	return Number1 > Number2 ? Number2 : Number1;
 }
-
 template <typename T>
 T Max(T Number1, T Number2)
 {
 	return Number1 > Number2 ? Number1 : Number2;
 }
-
 template <typename T>
 T Clamp(T Value, T Min, T Max)
 {
@@ -33,6 +31,21 @@ T Clamp(T Value, T Min, T Max)
 		tmp = Value;
 	return tmp;
 }
-
-
 int factorial(int Number);
+
+void Practice09061();
+int Average(int Number1, int Number2, int Number3);
+
+void Practice09062();
+int DisCount(int RegularPrice, int DisCountPrice);
+
+void Practice09063();
+int RollDice();
+
+void Practice09064();
+char Grades(int Score);
+
+void Practice09065();
+
+void Practice09066();
+int DigitSum(long long Number);
