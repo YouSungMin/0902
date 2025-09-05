@@ -323,9 +323,10 @@ int main()
     /*std::random_device RandomDivece;
     std::mt19937 Generate(RandomDivece());
     std::uniform_int_distribution<> uniformDis(1, 6);
+    const int TestCount = 1000000;
 
     int Count = 0;
-    for (int i = 0; i < 1000000; i++) {
+    for (int i = 0; i < TestCount; i++) { // 매직넘버 신경쓰기
         int Number = uniformDis(Generate);
         //printf("%d ",Number);
         if(Number == 6)
@@ -333,11 +334,13 @@ int main()
     }
     printf("\n6은 %d번 나왔습니다.",Count);
     */
+
     //2번
     /*enum SRP {
         Scissors=1,
         Rock,
         Paper
+        //NUM_OF_RPS 랜덤의 범위 지정해줄수 있음 알아두기
     };
     int Player_WinScore=0;
     int Computer_WinScore=0;
@@ -547,38 +550,55 @@ int main()
     //6번
 
     srand(time(NULL));
-
     int PlayerMoney = 100;
-    int ComputerMoney = 100;
     int PlayerChoice = 0;
     int ComputerHoljjak = 0;
-    int Betting = 0;
+    int Betting = 100;
     int WinStreakChoice = 0;
+    int WinStreakCount = 0;
 
-    while (PlayerMoney > 100 && ComputerMoney > 100) {
-        printf("게임시작\n");
+    printf("게임시작\n");
+    while (PlayerMoney >= 100) {
         printf("플레이어 남은금액 %d\n",PlayerMoney);
         printf("홀(1), 짝(2)를 선택해주세요 : ");
-        std::cin>>PlayerChoice;
-        ComputerHoljjak = rand()%2 +1;
+        ComputerHoljjak = rand() % 2 + 1;
+        printf("%d",ComputerHoljjak);
+        std::cin >> PlayerChoice;
+        if(PlayerChoice != 1 && PlayerChoice != 2){
+            printf("잘못된 입력입니다 다시입력해주세요. ");
+            continue;
+        }
+        
         if (ComputerHoljjak == PlayerChoice) {
-            printf("컴퓨터가 뽑은 결과는 %d 입니다. 맞추셨습니다.",ComputerHoljjak);
-            
-            while (WinStreakChoice != 2){
-                printf("1. 연승 도전 , 2. 금액 받기");
-                std::cin >> WinStreakChoice;
-                if(WinStreakChoice == 1){
-                    
-                }
-                else{
-                    
-                }
-            }
+            printf("컴퓨터가 뽑은 결과는 %d 입니다. 맞추셨습니다.\n",ComputerHoljjak);
         }
         else{
-            printf("컴퓨터가 뽑은 결과는 %d 입니다. 틀리셨습니다.", ComputerHoljjak);
-                PlayerMoney -=100;
+            printf("컴퓨터가 뽑은 결과는 %d 입니다. 틀리셨습니다.\n", ComputerHoljjak);
+                PlayerMoney -= Betting;
+                if(PlayerMoney < 100 )
+                    break;
             }
+        while (WinStreakChoice != 2) {
+            printf("1. 연승 도전 , 2. 금액 받기 (현재 연승 : %d): ",WinStreakCount);
+            std::cin >> WinStreakChoice;
+            if(WinStreakChoice != 1 && WinStreakChoice != 2){
+                printf("잘못된 입력입니다 다시입력해주세요. \n");
+                continue;
+            }
+            if (WinStreakChoice == 1) {
+                printf("연승 도전을 선택하셨습니다. \n");
+                Betting *=2;
+                WinStreakCount++;
+                break;
+            }
+            else {
+                PlayerMoney += Betting;
+                Betting = 100;
+                WinStreakChoice = 2;
+                WinStreakCount = 0;
+            }
+        }
+        WinStreakChoice = 0;
     }
 
 
