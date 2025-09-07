@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 int Practice0905_1(int Number1, int Number2);
 int Practice0905_2(int Age);
@@ -47,5 +48,8 @@ char Grades(int Score);
 
 void Practice09065();
 
-void Practice09066();
-int DigitSum(long long Number);
+//void Practice09066();
+//int DigitSum(const std::string& Number);
+
+void Practice09067();
+int BinaryConversion(int Number);

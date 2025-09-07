@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <bitset>
 int Practice0905_1(int Number1, int Number2)
 {
 	srand(time(NULL));
@@ -76,7 +77,7 @@ void Practice0905_7(int Number)
 		printf("\n");
 	}
 }
-int fctorial(int Number)
+int factorial(int Number)
 {
 		if (Number == 1)
 			return Number;
@@ -204,22 +205,42 @@ void Practice09065()
 	printf("%d", Clamp(Number3, Number1, Number2));
 }
 
-void Practice09066()
+//void Practice09066()
+//{
+//	std::string Number = 0;
+//	printf("숫자를 입력해주세요: ");
+//	std::cin>>Number;
+//	printf("%d",DigitSum(Number));
+//}
+//int DigitSum(const std::string& Number)
+//{
+//	int sum = 0;
+//	for (char c : Number)
+//	{
+//		if (std::isdigit(c)) // 숫자인 경우만 처리
+//		{
+//			sum += (c - '0');
+//		}
+//	}
+//	return sum;
+//}
+
+void Practice09067()
 {
-	long long Number = 0;
+	int Number = 0;
 	printf("숫자를 입력해주세요: ");
-	std::cin>>Number;
-	printf("%d",DigitSum(Number));
+	std::cin >> Number;
+	printf("10진수 : %d  , 2진수 : %d ", Number, BinaryConversion(Number));
 }
-
-int DigitSum(long long Number)
+int BinaryConversion(int Number)
 {
-	int Sum = 0;
-	int Numberlen = Number.length();
-	for(i=0;i<)
-	Number
+	int bin = 0;
+	int powerOfTen = 1;
+	while (Number > 0)
+	{
+		bin += (Number % 2) * powerOfTen;
+		powerOfTen *= 10;
+		Number /= 2;
+	}
+	return bin;
 }
-
-
-
-

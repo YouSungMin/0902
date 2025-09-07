@@ -171,5 +171,7 @@ int main()
     //Practice09063();
     //Practice09064();
     //Practice09065();
-    Practice09066();
+    //Practice09066();
+    //Practice09067();
+    //Practice09068();
 }
