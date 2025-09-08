@@ -1,4 +1,4 @@
-#include "Practice.h"
+#include "Practice0905.h"
 #include <random>
 #include <time.h>
 #include <stdio.h>
@@ -243,4 +243,230 @@ int BinaryConversion(int Number)
 		Number /= 2;
 	}
 	return bin;
+}
+
+void Practice09068()
+{
+	int Money = 10000;
+	int Betting = 0;
+	int Slot1=0,Slot2=0,Slot3=0;
+	srand(time(NULL));
+
+	while (Money > 100)
+	{
+		printf("현재 소지 금액 : %d\n",Money);
+		printf("배팅할 금액을 입력해주세요 : ");
+		std::cin>>Betting;
+		if(Money <Betting){
+			printf("소지한 금액보다 배팅금액이 더 큽니다\n");
+			continue;
+		}
+		else if (Betting < 100) {
+			printf("최소 배팅금액은 100입니다.\n");
+			continue;
+		}
+		Slot1 = rand() % 7 + 1;
+		Slot2 = rand() % 7 + 1;
+		Slot3 = rand() % 7 + 1;
+
+		if (Slot1 == Slot2 && Slot2 == Slot3) {
+			if (Slot1 == 7) {
+				Money += Betting * 10000;
+				printf("%d : %d : %d 축하드립니다 잭팟이 터졌습니다.\n", Slot1, Slot2, Slot3);
+			}
+			else {
+				Money += Betting * 50;
+				printf("%d : %d : %d 축하드립니다. \n", Slot1, Slot2, Slot3);
+			}
+		}
+		else
+			printf("%d : %d : %d\n", Slot1, Slot2, Slot3);
+
+	}
+	printf("소지금액이 부족하여 게임이 종료됩니다.");
+}
+
+void Practice09069()
+{
+	int MonsterHP = 100;
+	int PlayerHP = 100;
+	int Damage = 0;
+	int Turn = 0;
+
+
+	srand(time(NULL));
+
+
+	while (MonsterHP > 0 && PlayerHP > 0) {
+		printf("턴을 시작하려면 1을 입력해주세요");
+		std::cin >> Turn;
+
+		Damage = DamageCalculate();
+		MonsterHP -= Damage;
+		printf("플레이어가 %d의 데미지를 입혔습니다.\n", Damage);
+		if (MonsterHP <= 0)
+		{
+			MonsterHP = 0;
+			printf("몬스터의 체력 : %d\n", MonsterHP);
+			continue;
+		}
+		printf("몬스터의 체력 : %d\n", MonsterHP);
+
+		
+		Damage = DamageCalculate();
+		PlayerHP -= Damage;
+		printf("몬스터가 %d의 데미지를 입혔습니다.\n", Damage);
+		if(PlayerHP <= 0)
+			PlayerHP = 0;
+		else
+			printf("플레이어의 체력 : %d\n", PlayerHP);
+	}
+	if (MonsterHP <= 0)
+		printf("플레이어 승리");
+	else
+		printf("플레이어 패배");
+}
+int DamageCalculate()
+{
+	const int MaxDamage = 15;
+	const int MinDamage = 5;
+	int Critical = 0;
+	int Damage = 0;
+
+	Damage = rand() % (MaxDamage - MinDamage + 1) + MinDamage;
+	if (rand() % 10 == Critical) {
+		Damage *= 2;
+	}
+	return Damage;
+}
+
+void Practice090610()
+{
+	enum Card
+	{
+		CardA,
+		Card2,
+		Card3,
+		Card4,
+		Card5,
+		Card6,
+		Card7,
+		Card8,
+		Card9,
+		Card10,
+		CardJ,
+		CardQ,
+		CardK,
+		CardJoker,
+		NumfCards
+	};
+	int Money = 10000;
+	const int MinimumBet = 100;
+
+	while(Money >= MinimumBet)
+	{
+		int CurrentBet = MinimumBet;
+		printf("배팅을 해주세요(100~%d)",Money);
+		std::cin>>CurrentBet;
+		printf("%d원을 배팅했습니다.",CurrentBet);
+		Money -= CurrentBet;
+
+		int Dealer1 = rand() % CardJoker;
+		int Dealer2 = -1;
+		while (Dealer2 != Dealer1)
+		{
+			Dealer2 = rand() % CardJoker;
+		}
+		int Dealer3 = -1;
+		while (Dealer3 != Dealer1 && Dealer3 != Dealer2) {
+			Dealer2 = rand() % CardJoker;
+		}
+
+		int JokerIndex = rand() % 3;
+
+		switch (JokerIndex)
+		{
+		case 0:
+			Dealer1 = CardJoker;
+			break;
+		case 1:
+			Dealer2 = CardJoker;
+			break;
+		case 2:
+			Dealer1 = CardJoker;
+			break;
+		default:
+			break;
+		}
+
+		printf("카드를 선택하세요 (0~2) : ");
+		int PlayerInput = 0;
+		std::cin>>PlayerInput;
+
+		bool PlayerWin = false;
+		printf("플레이어는 %d를 선택했습니다.\n", PlayerInput);
+		switch (PlayerInput)
+		{
+		case 0:
+			if (Dealer1 == CardJoker)
+				PlayerWin = true;
+			break;
+		case 1:
+			if (Dealer2 == CardJoker)
+				PlayerWin = true;
+			break;
+		case 2:
+			if (Dealer3 == CardJoker)
+				PlayerWin = true;
+			break;
+		default:
+			break;
+		}
+		if(PlayerWin){
+			Money += MinimumBet * 2;
+			printf("조커를 뽑았습니다. 당신의 현재 금액은 %d 입니다,\n", Money);
+		}
+		else
+		{
+			printf("당신이 뽑은카드는 조커가 아닙니다.\n 다시도전 (0=yes, 1= no)");
+			int Select = -1;
+			std::cin >> Select;
+			if (Select == 0)
+			{
+				int PlayerSecondInput = -1;
+				switch (PlayerInput)
+				{
+				case 0:
+					{
+						do
+						{
+							printf("남은 카드중 하나를 선택하세요(1,2): ");
+							std::cin>>PlayerSecondInput;
+						}while(PlayerSecondInput != 1 && PlayerSecondInput != 2);
+						break;
+					}
+				case 1:
+					{
+					do
+					{
+						printf("남은 카드중 하나를 선택하세요(0,2): ");
+						std::cin >> PlayerSecondInput;
+					} while (PlayerSecondInput != 0 && PlayerSecondInput != 2);
+						break;
+					}
+				case 2:
+					{
+					do
+					{
+						printf("남은 카드중 하나를 선택하세요(0,1): ");
+						std::cin >> PlayerSecondInput;
+					} while (PlayerSecondInput != 0 && PlayerSecondInput != 1);
+						break;
+					}
+				default:
+					break;
+				}
+			}
+		}
+	}
 }

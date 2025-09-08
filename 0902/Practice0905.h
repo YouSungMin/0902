@@ -53,3 +53,10 @@ void Practice09065();
 
 void Practice09067();
 int BinaryConversion(int Number);
+
+void Practice09068();
+
+void Practice09069();
+int DamageCalculate();
+
+void Practice090610();
