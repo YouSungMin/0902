@@ -308,7 +308,7 @@ void Practice09069()
 		{
 			MonsterHP = 0;
 			printf("몬스터의 체력 : %d\n", MonsterHP);
-			continue;
+			break;
 		}
 		printf("몬스터의 체력 : %d\n", MonsterHP);
 
