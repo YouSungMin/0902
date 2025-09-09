@@ -46,5 +46,9 @@ int main()
     //Day0909();
     //Day09091();
     //DynamicAllocation();
-    DynamicAllocation2();
+    //DynamicAllocation2();
+
+    //Practice09091();
+    Practice09092();
+    //Day0908_MazeEscape();
 }
