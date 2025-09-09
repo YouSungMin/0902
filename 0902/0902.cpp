@@ -1,4 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
+#define new new(_NORMAL_BLOCK, __FILE__,__LINE__)
+#include <crtdbg.h> 
+
 #include <iostream>
 #include "header.h"
 #include <stdio.h>
@@ -10,9 +13,11 @@
 #include "TestMath.h"
 #include "Practice0905.h"
 #include "Practice0908.h"
+#include "Practice0909.h"
 
 int main()
 {
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     //Practice09061();
     //Practice09062();
     //Practice09063();
@@ -36,5 +41,10 @@ int main()
     //Practice09084();
     //Practice09085();
     //Practice09086();
-    Practice09087();
+    //Practice09087();
+
+    //Day0909();
+    //Day09091();
+    //DynamicAllocation();
+    DynamicAllocation2();
 }
