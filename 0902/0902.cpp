@@ -14,6 +14,7 @@
 #include "Practice0905.h"
 #include "Practice0908.h"
 #include "Practice0909.h"
+#include "Practice0910.h"
 
 int main()
 {
@@ -49,6 +50,10 @@ int main()
     //DynamicAllocation2();
 
     //Practice09091();
-    Practice09092();
+    //Practice09092();
     //Day0908_MazeEscape();
+    
+    ReadFile();
+    //Day0910_String();
+
 }

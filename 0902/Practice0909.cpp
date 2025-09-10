@@ -1,7 +1,11 @@
 #include "Practice0909.h"
 #include "Practice0905.h"
+#include "Practice0910.h"
 #include <iostream>
 #include <stdio.h>
+#include <string>
+#include <direct.h>
+#include <fstream>
 
 void PointerParameter(int* pNumber)
 {
@@ -185,6 +189,9 @@ void Practice09092()
 	delete[] Array;
 	Array = nullptr;
 }
+
+
+
 void Day0908_MazeEscape()
 {
 	/*
@@ -242,8 +249,13 @@ void Day0908_MazeEscape()
 	int BattlePercent = 1;
 	int Percent = 0;
 
-	FindStartPosition(PlayerX, PlayerY);
+	/*int MazeWidth = 0;
+	int MazeHeight = 0;*/
 
+	//int Maze[MazeHeight][MazeWidth];
+
+	FindStartPosition(PlayerX, PlayerY);
+	//ReadMapFile(MazeWidth, MazeHeight);
 	printf("~~ 미로 탈출 게임 ~~\n");
 
 	while (PlayerHP > 0)
@@ -288,6 +300,33 @@ void Day0908_MazeEscape()
 		}
 	}
 
+}
+
+void ReadMapFile(int MazeWidth, int MazeHeight)
+{
+	int Position = 0;
+	const char* FilePath = ".\\Data\\MapData.txt";
+	std::ifstream InputFile(FilePath);
+	if (!InputFile.is_open())	// 파일이 열렸는지 확인하는 함수
+	{
+		printf("파일을 열 수 없습니다.\n");
+		printf("[%s] 경로를 확인하세요.\n", FilePath);
+		return;
+	}
+
+	std::string FileContents(
+		(std::istreambuf_iterator<char>(InputFile)),
+		std::istreambuf_iterator<char>());	//InputFile에 있는 글자들을 모두 읽어서 FileContents에 저장하기
+	int MazeSize = FileContents.length();
+
+	Position = FileContents.find(',');
+
+	char* Maze = new char[MazeSize];
+	for (int i = 0; i < MazeSize; i++) {
+		Maze[i] = FileContents[i];
+	}
+
+	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const char*로 돌려주는 함수
 }
 
 int StartBattle(int PlayerHP)
@@ -335,6 +374,8 @@ int StartBattle(int PlayerHP)
 		return PlayerHP;
 	}
 }
+
+
 
 void PrintMaze(int PlayerX, int PlayerY)
 {
