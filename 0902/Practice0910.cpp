@@ -309,26 +309,6 @@ void ReadFile()
 	std::string FileContents(
 		(std::istreambuf_iterator<char>(InputFile)),
 		std::istreambuf_iterator<char>());	//InputFile에 있는 글자들을 모두 읽어서 FileContents에 저장하기
-	int MazeSize = FileContents.length();
-	
-
-	CommaPosition = FileContents.find(',');
-	StringEndPositon = FileContents.find('\0');
-	char* MazeHW = new char[StringEndPositon];
-
-	for(int i = 0 ; i< CommaPosition;i++)
-	{
-		MazeHW[i] = FileContents[i];
-	}
-	//for(int i = CommaPosition ; i<StringEndPositon;i++)
-		
-
-	char* Maze = new char[MazeSize - StringEndPositon];
-	for (int i = 0; i < MazeSize; i++) {
-		Maze[i] = FileContents[i];
-	}
-
-
 
 	printf("파일 내용은 다음과 같습니다.\n");
 	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const char*로 돌려주는 함수
