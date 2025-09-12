@@ -129,6 +129,7 @@
     <ClCompile Include="Practice0909.cpp" />
     <ClCompile Include="Practice0910.cpp" />
     <ClCompile Include="Practice0911.cpp" />
+    <ClCompile Include="Practice0912.cpp" />
     <ClCompile Include="TestMath.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Practice0909.h" />
     <ClInclude Include="Practice0910.h" />
     <ClInclude Include="Practice0911.h" />
+    <ClInclude Include="Practice0912.h" />
     <ClInclude Include="TestMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

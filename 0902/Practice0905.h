@@ -57,6 +57,6 @@ int BinaryConversion(int Number);
 void Practice09068();
 
 void Practice09069();
-int DamageCalculate();
+int DamageCalculate(float AttackPower);
 
 void Practice090610();

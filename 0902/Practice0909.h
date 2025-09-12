@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Practice0912.h"
 void Day0909();
 void Day09091();
 void PointerParameter(int* pNumber);
@@ -95,5 +95,6 @@ bool IsEnd(int X, int Y);
 /// <returns>결정된 방향</returns>
 MoveDirection GetMoveInput(int MoveFlags);
 
-int StartBattle(int PlayerHP);
-int DamageCalculate();
+void StartBattle(Player* character);
+int DamageCalculate(float AttackPower);
+void HealerEncount(Player* character);

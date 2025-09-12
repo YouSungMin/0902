@@ -1,6 +1,7 @@
 #include "Practice0909.h"
 #include "Practice0905.h"
 #include "Practice0910.h"
+#include "Practice0912.h"
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -244,47 +245,41 @@ void MazeEscapeRun()
 			```
 	*/
 	srand(time(NULL));
-	int PlayerX = 0;
-	int PlayerY = 0;
-	int PlayerHP = 100;
+	
+	Player* character = new Player(0,0);
 	int HealPercent = 0;
 	int BattlePercent = 1;
 	int Percent = 0;
 
-	/*int MazeWidth = 0;
-	int MazeHeight = 0;*/
+	FindStartPosition(character->x, character->y);
 
-	//int Maze[MazeHeight][MazeWidth];
-
-	FindStartPosition(PlayerX, PlayerY);
-	//ReadMapFile(MazeWidth, MazeHeight);
 	printf("~~ 미로 탈출 게임 ~~\n");
 
-	while (PlayerHP > 0)
+	while (character->Health > 0)
 	{
-		PrintMaze(PlayerX, PlayerY);
+		PrintMaze(character->x, character->y);
 
-		if (IsEnd(PlayerX, PlayerY))
+		if (IsEnd(character->x, character->y))
 		{
 			printf("축하합니다! 미로를 탈출했습니다!\n");
 			break;
 		}
 
-		int MoveFlags = PrintAvailableMoves(PlayerX, PlayerY);
+		int MoveFlags = PrintAvailableMoves(character->x, character->y);
 		MoveDirection Direction = GetMoveInput(MoveFlags);
 		switch (Direction)
 		{
 		case DirUp:
-			PlayerY--;
+			character->y--;
 			break;
 		case DirDown:
-			PlayerY++;
+			character->y++;
 			break;
 		case DirLeft:
-			PlayerX--;
+			character->x--;
 			break;
 		case DirRight:
-			PlayerX++;
+			character->x++;
 			break;
 		case DirNone:
 		default:
@@ -292,15 +287,18 @@ void MazeEscapeRun()
 			break;
 		}
 		Percent = rand() % 10;
-		if(Percent == HealPercent && PlayerHP < 100)
+		if (Percent == HealPercent)
 		{
-			PlayerHP += 10;
-			printf("HP가 회복되었습니다. 현재 체력 %d\n",PlayerHP);
+			if(character->Item > 0)
+				HealerEncount(character);
 		}
-		else if (Percent == BattlePercent || Percent == BattlePercent + 1){
-			PlayerHP = StartBattle(PlayerHP);
+		if (Percent == BattlePercent || Percent == BattlePercent + 1){
+			StartBattle(character);
 		}
+
 	}
+	delete character;
+	character = nullptr;
 
 }
 
@@ -331,49 +329,88 @@ void MazeEscapeRun()
 //	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const char*로 돌려주는 함수
 //}
 
-int StartBattle(int PlayerHP)
+void HealerEncount(Player* character)
 {
-	int MonsterHP = 30;
-	int Damage = 0;
-	int Turn = 0;
+	char Choice = NULL;
+	int endflag = 0;
+	int HealPoint = 0;
+	while (endflag == 0)
+	{
+		printf("치료사를 만났습니다 치료하시겠습니까? (현재 체력:%.1f)\n",character->Health);
+		std::cin>>Choice;
+		if(Choice == 'y')
+			while (character->Item > 0)
+			{
+				printf("치료하실 HP만큼 입력해주세요 (HP 1 = 골드 1) (현재 남은 골드 : %d)\n", character->Item);
+				std::cin >> HealPoint;
+				if((100 - character->Health) < HealPoint)
+					printf("%0.1f 보다 초과해서 회복할 수 없습니다.\n",(100.0f - character->Health));
+				if(character->Item < HealPoint)
+					printf("골드가 부족합니다.\n");
+				else
+				{
+					character->Item -= HealPoint;
+					character->Health += HealPoint;
+					printf("%d 만큼 회복 하였습니다.(현재 체력 : %.1f)(현재 남은 골드 : %d)\n",HealPoint,character->Health,character->Item);
+					endflag = 1;
+					break;
+				}
+			}
+		else if(Choice == 'n')
+			printf("치료를 거절하셨습니다.\n");
+		else
+		{
+			printf("잘못 입력하셨습니다. 다시 입력해주세요.");
+			continue;
+		}
+	}
+}
+
+void StartBattle(Player* character)
+{
+	Monster Enemy;
+	float Damage = 0;
+	char Turn = 0;
 
 
 	srand(time(NULL));
 
 	printf("전투가 발생했습니다. \n");
-	while (MonsterHP > 0 && PlayerHP > 0) {
+	while (Enemy.Health> 0 && character->Health > 0) {
+
 		printf("턴을 시작하려면 1을 입력해주세요");
 		std::cin >> Turn;
+		if(Turn != '1')
+			continue;
 
-		Damage = DamageCalculate();
-		MonsterHP -= Damage;
-		printf("플레이어가 %d의 데미지를 입혔습니다.\n", Damage);
-		if (MonsterHP <= 0)
+		Damage = DamageCalculate(character->AttackPower);
+		Enemy.Health -= Damage;
+		printf("플레이어가 %.1f의 데미지를 입혔습니다.\n", Damage);
+		if (Enemy.Health <= 0)
 		{
-			MonsterHP = 0;
-			printf("몬스터의 체력 : %d\n", MonsterHP);
+			Enemy.Health = 0;
+			printf("몬스터의 체력 : %.1f\n", Enemy.Health);
 			break;
 		}
-		printf("몬스터의 체력 : %d\n", MonsterHP);
+		printf("몬스터의 체력 : %.1f\n", Enemy.Health);
 
 
-		Damage = DamageCalculate();
-		PlayerHP -= Damage;
-		printf("몬스터가 %d의 데미지를 입혔습니다.\n", Damage);
-		if (PlayerHP <= 0)
-			PlayerHP = 0;
+		Damage = DamageCalculate(Enemy.AttackPower);
+		character->Health -= Damage;
+		printf("몬스터가 %.1f의 데미지를 입혔습니다.\n", Damage);
+		if (character->Health <= 0)
+			character->Health = 0;
 		else
-			printf("플레이어의 체력 : %d\n", PlayerHP);
+			printf("플레이어의 체력 : %.1f\n", character->Health);
 	}
-	if (MonsterHP <= 0)
+	if (Enemy.Health <= 0)
 	{ 
 		printf("플레이어 승리\n");
-		return PlayerHP;
+		character->Item += Enemy.Item;
 	}
 	else
 	{
 		printf("플레이어 패배\n");
-		return PlayerHP;
 	}
 }
 
@@ -517,4 +554,5 @@ MoveDirection GetMoveInput(int MoveFlags)
 
 	return Direction;
 }
+
 

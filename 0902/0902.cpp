@@ -16,6 +16,8 @@
 #include "Practice0909.h"
 #include "Practice0910.h"
 #include "Practice0911.h"
+#include "Practice0912.h"
+#include <vector>
 
 int main()
 {
@@ -52,11 +54,13 @@ int main()
 
     //Practice09091();
     //Practice09092();
+    Day0911(); //맵파일 불러오는 부분
     //MazeEscapeRun();
     
     //ReadFile();
     //Day0910_String();
 
-    Day0911();
-
+    /*Day0912_Struct();
+    Day0912_OperatorOverloading();*/
+    //Day0912_Position();
 }

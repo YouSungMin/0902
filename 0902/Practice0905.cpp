@@ -1,10 +1,12 @@
 #include "Practice0905.h"
+#include "Practice0912.h"
 #include <random>
 #include <time.h>
 #include <stdio.h>
 #include <iostream>
 #include <string>
 #include <bitset>
+#include "Practice0909.h"
 int Practice0905_1(int Number1, int Number2)
 {
 	srand(time(NULL));
@@ -286,54 +288,53 @@ void Practice09068()
 	printf("소지금액이 부족하여 게임이 종료됩니다.");
 }
 
-void Practice09069()
+//void Practice09069()
+//{
+//	int MonsterHP = 100;
+//	int PlayerHP = 100;
+//	int Damage = 0;
+//	int Turn = 0;
+//
+//
+//	srand(time(NULL));
+//
+//
+//	while (MonsterHP > 0 && PlayerHP > 0) {
+//		printf("턴을 시작하려면 1을 입력해주세요");
+//		std::cin >> Turn;
+//
+//		Damage = DamageCalculate();
+//		MonsterHP -= Damage;
+//		printf("플레이어가 %d의 데미지를 입혔습니다.\n", Damage);
+//		if (MonsterHP <= 0)
+//		{
+//			MonsterHP = 0;
+//			printf("몬스터의 체력 : %d\n", MonsterHP);
+//			break;
+//		}
+//		printf("몬스터의 체력 : %d\n", MonsterHP);
+//
+//		
+//		Damage = DamageCalculate();
+//		PlayerHP -= Damage;
+//		printf("몬스터가 %d의 데미지를 입혔습니다.\n", Damage);
+//		if(PlayerHP <= 0)
+//			PlayerHP = 0;
+//		else
+//			printf("플레이어의 체력 : %d\n", PlayerHP);
+//	}
+//	if (MonsterHP <= 0)
+//		printf("플레이어 승리");
+//	else
+//		printf("플레이어 패배");
+//}
+int DamageCalculate(float AttackPower)
 {
-	int MonsterHP = 100;
-	int PlayerHP = 100;
-	int Damage = 0;
-	int Turn = 0;
 
-
-	srand(time(NULL));
-
-
-	while (MonsterHP > 0 && PlayerHP > 0) {
-		printf("턴을 시작하려면 1을 입력해주세요");
-		std::cin >> Turn;
-
-		Damage = DamageCalculate();
-		MonsterHP -= Damage;
-		printf("플레이어가 %d의 데미지를 입혔습니다.\n", Damage);
-		if (MonsterHP <= 0)
-		{
-			MonsterHP = 0;
-			printf("몬스터의 체력 : %d\n", MonsterHP);
-			break;
-		}
-		printf("몬스터의 체력 : %d\n", MonsterHP);
-
-		
-		Damage = DamageCalculate();
-		PlayerHP -= Damage;
-		printf("몬스터가 %d의 데미지를 입혔습니다.\n", Damage);
-		if(PlayerHP <= 0)
-			PlayerHP = 0;
-		else
-			printf("플레이어의 체력 : %d\n", PlayerHP);
-	}
-	if (MonsterHP <= 0)
-		printf("플레이어 승리");
-	else
-		printf("플레이어 패배");
-}
-int DamageCalculate()
-{
-	const int MaxDamage = 15;
-	const int MinDamage = 5;
 	int Critical = 0;
 	int Damage = 0;
 
-	Damage = rand() % (MaxDamage - MinDamage + 1) + MinDamage;
+	Damage = AttackPower;
 	if (rand() % 10 == Critical) {
 		Damage *= 2;
 	}
