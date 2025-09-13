@@ -1,16 +1,16 @@
-#include "Practice0913.h"
+ï»¿#include "Practice0913.h"
 #include <iostream>
 
 void Practice09131()
 {
 	Date* InputDate = new Date;
-	char Week = '\0';
+	std::string Week = "";
 	int TotalDays = 0;
-	printf("¿¬µµ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+	printf("ì—°ë„ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 	std::cin>> InputDate->year;
-	printf("¿ùÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+	printf("ì›”ì„ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 	std::cin>> InputDate->month;
-	printf("ÀÏ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+	printf("ì¼ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 	std::cin>> InputDate->day;
 
 	
@@ -19,40 +19,56 @@ void Practice09131()
 	switch (TotalDays % 7)
 	{
 	case 0:
-		Week = '¿ù';
+		Week = "ì›”ìš”ì¼";
+		break;
 	case 1:
-		Week = 'È­';
+		Week = "í™”ìš”ì¼";
+		break;
 	case 2:
-		Week = '¼ö';
+		Week = "ìˆ˜ìš”ì¼";
+		break;
 	case 3:
-		Week = '¸ñ';
+		Week = "ëª©ìš”ì¼";
+		break;
 	case 4:
-		Week = '±İ';
+		Week = "ê¸ˆìš”ì¼";
+		break;
 	case 5:
-		Week = 'Åä';
+		Week = "í† ìš”ì¼";
+		break;
 	case 6:
-		Week = 'ÀÏ';
+		Week = "ì¼ìš”ì¼";
+		break;
 	default:
 		break;
 	}
-	// 4ÀÇ¹è¼ö´Â À±³â 100ÀÇ ¹è¼ö´Â À±³âÀÌ¾Æ´Ô 400ÀÇ ¹è¼ö´Â À±³â
+	// 4ì˜ë°°ìˆ˜ëŠ” ìœ¤ë…„ 100ì˜ ë°°ìˆ˜ëŠ” ìœ¤ë…„ì´ì•„ë‹˜ 400ì˜ ë°°ìˆ˜ëŠ” ìœ¤ë…„
 
-	printf("1³â 1¿ù 1ÀÏ¿¡¼­ %d³â %d¿ù %dÀÏ±îÁö [%d]ÀÏÀÌ Áö³µ°í ¿äÀÏÀº %cÀÔ´Ï´Ù",
-	InputDate->year, InputDate->month, InputDate->day, TotalDays,Week);
+	printf("1ë…„ 1ì›” 1ì¼ì—ì„œ %dë…„ %dì›” %dì¼ê¹Œì§€ [%d]ì¼ì´ ì§€ë‚¬ê³  ìš”ì¼ì€ %sì…ë‹ˆë‹¤",
+	InputDate->year, InputDate->month, InputDate->day, TotalDays,Week); //ì¶œë ¥ì°½ì—ì„œ Weekê°€ ê¹¨ì§ ê°’ì€ ì œëŒ€ë¡œ ë“¤ì–´ê°€ ìˆìŒ 
 }
 
 int DateCalculate(Date* InputDate)
 {
-	int TotalDays = 0;
+	int TotalDays = 0; //ì§€ë‚œ ì¼ìˆ˜ë¥¼ ë‹´ì„ ë³€ìˆ˜ 
 
-	int DaysInMonths[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+	int DaysInMonths[12] = {31,28,31,30,31,30,31,31,30,31,30,31}; // 1~12ì›”ì˜ ì¼ìˆ˜ ë°°ì—´ 
 
-	TotalDays += 365*(InputDate->year-1);
-	for (int i = 1; i < InputDate->month - 1; i++)
+	TotalDays += 365*(InputDate->year-1); // ë…„ìˆ˜ê³„ì‚° í›„ ì¼ìˆ˜ ì¶”ê°€ 
+	for (int i = 1; i < InputDate->year; i++)
 	{
-		TotalDays += DaysInMonths[i-1];
+		if ((i % 4 == 0 && i % 100 != 0) || (i % 400 == 0)) //ìœ¤ë…„ ê³„ì‚° ì¡°ê±´ë¬¸
+			TotalDays++;
 	}
-	TotalDays += InputDate->day - 1;
+
+	if ((InputDate->year % 4 == 0 && InputDate->year % 100 != 0) || (InputDate->year % 400 == 0)) //í•´ë‹¹ë…„ë„ê°€ ìœ¤ë…„ì¼ ê²½ìš° 2ì›” 29ì¼ë¡œ ë³€ê²½ 
+		DaysInMonths[1] = 29;
+
+	for (int i = 0; i < InputDate->month-1; i++)
+	{
+		TotalDays += DaysInMonths[i]; // ì…ë ¥ ì›” ìˆ˜ê°€ 5ì›”ì¼ ê²½ìš° 4ì›” ê¹Œì§€ì˜ ì¼ìˆ˜ ë”í•˜ê¸°
+	}
+	TotalDays += InputDate->day; // 5ì›”ì˜ ì¼ìˆ˜ë¥¼ ë§ˆì§€ë§‰ì— ë”í•˜ê¸° 
 	
 	return TotalDays;
 }
