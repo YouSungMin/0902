@@ -1,6 +1,6 @@
 #include "Practice0912.h"
 #include <stdio.h>
-
+#include "Position.h"
 void Day0912_Struct()
 {
 	Enemy Golin;

@@ -83,31 +83,7 @@ void PrintEnemy(const Enemy* pEnemy);
 
 void Day0912_OperatorOverloading();
 
-struct Position 
-{
-	int x = 0;
-	int y = 0;
-	int Health = 100;
 
-	Position(int PositionX, int PositionY)
-	{
-		x = PositionX;
-		y = PositionY;
-	}
-	Position operator+(const Position& other) const
-	{
-		return Position(
-			x + other.x,
-			y + other.y);
-	}
-
-	Position operator-(const Position& other) const
-	{
-		return Position(
-			x - other.x,
-			y - other.y);
-	}
-};
 
 struct Monster
 {

@@ -18,11 +18,12 @@
 #include "Practice0911.h"
 #include "Practice0912.h"
 #include "Practice0913.h"
-#include <vector>
+#include "BlackJack.h"
 
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    srand(time(0));
     //Practice09061();
     //Practice09062();
     //Practice09063();
@@ -65,5 +66,6 @@ int main()
     Day0912_OperatorOverloading();*/
     //Day0912_Position();
 
-    Practice09131();
+    //Practice09131();
+    PlayBlackjack();
 }
