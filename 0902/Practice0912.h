@@ -22,7 +22,7 @@ struct Enemy
 	{
 		Health = Modifier *10;
 		AttackPower = Modifier*5;
-		DropGold = static_cast<int>(Modifier*100.f);
+		DropGold = static_cast<int>(Modifier*100.0f);
 	}
 	Enemy(std::string _Name, float _Health, float _AttackPower, int _DropGold)
 		: Name(_Name), Health(_Health), AttackPower(_AttackPower), DropGold(_DropGold)	// 만들때부터 값이 박힌체로 만들어진다.
@@ -49,9 +49,9 @@ struct Enemy
 	{
 		return Enemy(
 			Name + "(합체-)",
-			Health - other.Health *0.5,
+			Health - other.Health *0.5f,
 			AttackPower - other.AttackPower * 0.5f,
-			DropGold - other.DropGold *0.5);
+			DropGold - static_cast<int>(other.DropGold *0.5f));
 	}
 
 	Enemy operator*(float Multiplier) const
@@ -60,7 +60,7 @@ struct Enemy
 			Name + "(합체*)",
 			Health * Multiplier,
 			AttackPower * Multiplier,
-			DropGold *Multiplier);
+			DropGold * static_cast<int>(Multiplier));
 	}
 
 };
@@ -85,34 +85,33 @@ void Day0912_OperatorOverloading();
 
 
 
-struct Monster
-{
-	float Health = 30.0f;
-	float AttackPower = 5.0f;
-	int Item = 0;
+//struct Monster
+//{
+//	float Health = 30.0f;
+//	float AttackPower = 5.0f;
+//	int Item = 0;
+//
+//	Monster()
+//	{
+//		Health = rand() % 50 + 30;
+//		AttackPower = rand() % (15 - 5 + 1) + 5;
+//		Item = rand() % 15 +5;
+//	}
+//};
 
-	Monster()
-	{
-		srand(time(NULL));
-		Health = rand() % 50 + 30;
-		AttackPower = rand() % (15 - 5 + 1) + 5;
-		Item = rand() % 15 +5;
-	}
-};
-
-struct Player
-{
-	int x = 0;
-	int y = 0;
-	float Health = 100.0f;
-	float AttackPower = 10.0f;
-	int Item = 0;
-
-	Player(int PositionX, int PositionY)
-	{
-		x = PositionX;
-		y = PositionY;
-	}
-};
+//struct Player
+//{
+//	int x = 0;
+//	int y = 0;
+//	float Health = 100.0f;
+//	float AttackPower = 10.0f;
+//	int Item = 0;
+//
+//	Player(int PositionX, int PositionY)
+//	{
+//		x = PositionX;
+//		y = PositionY;
+//	}
+//};
 
 void Day0912_Position();

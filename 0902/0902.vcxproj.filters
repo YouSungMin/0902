@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="동물시리즈">
+      <UniqueIdentifier>{247e30e6-c478-4311-8151-83644c098f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="몬스터">
+      <UniqueIdentifier>{a7ad77de-781b-4579-a503-ffb0936d1eb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="0902.cpp">
@@ -55,6 +61,36 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Animal.cpp">
+      <Filter>동물시리즈</Filter>
+    </ClCompile>
+    <ClCompile Include="Tiger.cpp">
+      <Filter>동물시리즈</Filter>
+    </ClCompile>
+    <ClCompile Include="Bird.cpp">
+      <Filter>동물시리즈</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>동물시리즈</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>몬스터</Filter>
+    </ClCompile>
+    <ClCompile Include="Oak.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -99,6 +135,36 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Animal.h">
+      <Filter>동물시리즈</Filter>
+    </ClInclude>
+    <ClInclude Include="Tiger.h">
+      <Filter>동물시리즈</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>동물시리즈</Filter>
+    </ClInclude>
+    <ClInclude Include="Bird.h">
+      <Filter>동물시리즈</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>몬스터</Filter>
+    </ClInclude>
+    <ClInclude Include="Oak.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

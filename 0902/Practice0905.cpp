@@ -9,7 +9,6 @@
 #include "Practice0909.h"
 int Practice0905_1(int Number1, int Number2)
 {
-	srand(time(NULL));
 	int tmp;
 	int RandomValue=0;
 
@@ -27,7 +26,7 @@ int Practice0905_2(int Age)
 }
 float Practice0905_3(float Radius)
 {
-	float PI = 3.1415;
+	float PI = 3.1415f;
 	return Radius*Radius*PI;
 }
 bool Practice0905_4(int Number)
@@ -50,13 +49,13 @@ int Practice0905_5(int Score)
 		return 5;
 	else if(Score >= 90)
 		return A;
-	else if (Score >= 90)
+	else if (Score >= 80)
 		return B;
-	else if (Score >= 90)
+	else if (Score >= 70)
 		return C;
-	else if (Score >= 90)
+	else if (Score >= 60)
 		return D;
-	else if (Score >= 90)
+	else
 		return F;
 }
 int Practice0905_6_AddItem(int Inventory,int Enumber)
@@ -124,7 +123,7 @@ void Practice09062()
 }
 int DisCount(int RegularPrice, int DisCountPrice)
 {
-	return RegularPrice * ((100 - DisCountPrice) * 0.01);
+	return RegularPrice * static_cast<int>((100 - DisCountPrice) * 0.01);
 }
 
 void Practice09063()
@@ -143,7 +142,6 @@ void Practice09063()
 int RollDice()
 {
 	int spot = 0;
-	srand(time(NULL));
 	return spot = rand() % 6 + 1;
 }
 
@@ -252,7 +250,6 @@ void Practice09068()
 	int Money = 10000;
 	int Betting = 0;
 	int Slot1=0,Slot2=0,Slot3=0;
-	srand(time(NULL));
 
 	while (Money > 100)
 	{
@@ -328,18 +325,7 @@ void Practice09068()
 //	else
 //		printf("플레이어 패배");
 //}
-int DamageCalculate(float AttackPower)
-{
 
-	int Critical = 0;
-	int Damage = 0;
-
-	Damage = AttackPower;
-	if (rand() % 10 == Critical) {
-		Damage *= 2;
-	}
-	return Damage;
-}
 
 void Practice090610()
 {

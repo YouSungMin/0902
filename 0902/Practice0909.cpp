@@ -1,5 +1,4 @@
 #include "Practice0909.h"
-#include "Practice0905.h"
 #include "Practice0910.h"
 #include "Practice0912.h"
 #include <iostream>
@@ -7,6 +6,12 @@
 #include <string>
 #include <direct.h>
 #include <fstream>
+#include "Player.h"
+#include "Monster.h"
+#include "Goblin.h"
+#include "Zombie.h"
+#include "Oak.h"
+#include "Skeleton.h"
 
 void PointerParameter(int* pNumber)
 {
@@ -244,42 +249,43 @@ void MazeEscapeRun()
 			방향 입력:
 			```
 	*/
-	srand(time(NULL));
 	
-	Player* character = new Player(0,0);
+	//Player* character = new Player(0,0);
+	Player character =  Player(1,1);
+
 	int HealPercent = 0;
 	int BattlePercent = 1;
 	int Percent = 0;
 
-	FindStartPosition(character->x, character->y);
+	FindStartPosition(character.GetPositionX(), character.GetPositionY());
 
 	printf("~~ 미로 탈출 게임 ~~\n");
 
-	while (character->Health > 0)
+	while (character.GetHealPoint() > 0)
 	{
-		PrintMaze(character->x, character->y);
+		PrintMaze(character.GetPositionX(), character.GetPositionY());
 
-		if (IsEnd(character->x, character->y))
+		if (IsEnd(character.GetPositionX(), character.GetPositionY()))
 		{
 			printf("축하합니다! 미로를 탈출했습니다!\n");
 			break;
 		}
 
-		int MoveFlags = PrintAvailableMoves(character->x, character->y);
+		int MoveFlags = PrintAvailableMoves(character.GetPositionX(), character.GetPositionY());
 		MoveDirection Direction = GetMoveInput(MoveFlags);
 		switch (Direction)
 		{
 		case DirUp:
-			character->y--;
+			character.SetPositionY(character.GetPositionY() - 1);
 			break;
 		case DirDown:
-			character->y++;
+			character.SetPositionY(character.GetPositionY() + 1);
 			break;
 		case DirLeft:
-			character->x--;
+			character.SetPositionX(character.GetPositionX() - 1);
 			break;
 		case DirRight:
-			character->x++;
+			character.SetPositionX(character.GetPositionX() + 1);
 			break;
 		case DirNone:
 		default:
@@ -289,7 +295,7 @@ void MazeEscapeRun()
 		Percent = rand() % 10;
 		if (Percent == HealPercent)
 		{
-			if(character->Item > 0)
+			if(character.GetGold() > 0)
 				HealerEncount(character);
 		}
 		if (Percent == BattlePercent || Percent == BattlePercent + 1){
@@ -297,8 +303,6 @@ void MazeEscapeRun()
 		}
 
 	}
-	delete character;
-	character = nullptr;
 
 }
 
@@ -329,29 +333,29 @@ void MazeEscapeRun()
 //	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const char*로 돌려주는 함수
 //}
 
-void HealerEncount(Player* character)
+void HealerEncount(Player& character)
 {
 	char Choice = NULL;
 	int endflag = 0;
 	int HealPoint = 0;
 	while (endflag == 0)
 	{
-		printf("치료사를 만났습니다 치료하시겠습니까? (현재 체력:%.1f)\n",character->Health);
+		printf("치료사를 만났습니다 치료하시겠습니까? (현재 체력:%.1f)\n",character.GetHealPoint());
 		std::cin>>Choice;
 		if(Choice == 'y')
-			while (character->Item > 0)
+			while (character.GetGold() > 0)
 			{
-				printf("치료하실 HP만큼 입력해주세요 (HP 1 = 골드 1) (현재 남은 골드 : %d)\n", character->Item);
+				printf("치료하실 HP만큼 입력해주세요 (HP 1 = 골드 1) (현재 남은 골드 : %d)\n", character.GetGold());
 				std::cin >> HealPoint;
-				if((100 - character->Health) < HealPoint)
-					printf("%0.1f 보다 초과해서 회복할 수 없습니다.\n",(100.0f - character->Health));
-				if(character->Item < HealPoint)
+				if((100 - character.GetHealPoint()) < HealPoint)
+					printf("%0.1f 보다 초과해서 회복할 수 없습니다.\n",(100.0f - character.GetHealPoint()));
+				if(character.GetHealPoint() < HealPoint)
 					printf("골드가 부족합니다.\n");
 				else
 				{
-					character->Item -= HealPoint;
-					character->Health += HealPoint;
-					printf("%d 만큼 회복 하였습니다.(현재 체력 : %.1f)(현재 남은 골드 : %d)\n",HealPoint,character->Health,character->Item);
+					character.SetGold(character.GetGold() - HealPoint);
+					character.SetHealPoint(character.GetHealPoint() + HealPoint);
+					printf("%d 만큼 회복 하였습니다.(현재 체력 : %.1f)(현재 남은 골드 : %d)\n",HealPoint,character.GetHealPoint(), character.GetGold());
 					endflag = 1;
 					break;
 				}
@@ -366,47 +370,60 @@ void HealerEncount(Player* character)
 	}
 }
 
-void StartBattle(Player* character)
+void StartBattle(Player& character)
 {
 	Monster Enemy;
 	float Damage = 0;
 	char Turn = 0;
+	int MonsterSpawn = 0;
 
-
-	srand(time(NULL));
+	MonsterSpawn = rand() % 4;
+	switch (MonsterSpawn)
+	{
+	case 0:
+		Enemy = Goblin("고블린");
+		break;
+	case 1:
+		Enemy = Oak("오크");
+		break;
+	case 2:
+		Enemy = Zombie("좀비");
+		break;
+	case 3:
+		break;
+		Enemy = Skeleton("스켈레톤");
+	default:
+		break;
+	}
 
 	printf("전투가 발생했습니다. \n");
-	while (Enemy.Health> 0 && character->Health > 0) {
+	while (Enemy.GetHealPoint()> 0 && character.GetHealPoint() > 0) {
 
 		printf("턴을 시작하려면 1을 입력해주세요");
 		std::cin >> Turn;
 		if(Turn != '1')
 			continue;
 
-		Damage = DamageCalculate(character->AttackPower);
-		Enemy.Health -= Damage;
+		Damage = CriticalCalculate(character.GetAttackPower());
+		Enemy.SetHealPoint(Enemy.GetHealPoint() - Damage);
 		printf("플레이어가 %.1f의 데미지를 입혔습니다.\n", Damage);
-		if (Enemy.Health <= 0)
+		if (Enemy.GetHealPoint() <= 0)
 		{
-			Enemy.Health = 0;
-			printf("몬스터의 체력 : %.1f\n", Enemy.Health);
+			printf("%s의 체력 : %.1f\n",Enemy.GetName().c_str(), Enemy.GetHealPoint());
 			break;
 		}
-		printf("몬스터의 체력 : %.1f\n", Enemy.Health);
+		printf("%s의 체력 : %.1f\n", Enemy.GetName().c_str(),Enemy.GetHealPoint());
 
 
-		Damage = DamageCalculate(Enemy.AttackPower);
-		character->Health -= Damage;
-		printf("몬스터가 %.1f의 데미지를 입혔습니다.\n", Damage);
-		if (character->Health <= 0)
-			character->Health = 0;
-		else
-			printf("플레이어의 체력 : %.1f\n", character->Health);
+		Damage = CriticalCalculate(Enemy.GetAttackPower());
+		character.SetHealPoint(character.GetHealPoint() - Damage);
+		printf("%s가 %.1f의 데미지를 입혔습니다.\n", Enemy.GetName().c_str(), Damage);
+		printf("플레이어의 체력 : %.1f\n", character.GetHealPoint());
 	}
-	if (Enemy.Health <= 0)
+	if (Enemy.GetHealPoint() == 0)
 	{ 
-		printf("플레이어 승리\n");
-		character->Item += Enemy.Item;
+		printf("플레이어 승리 \n");
+		character.SetGold(character.GetGold()+Enemy.GetGold());
 	}
 	else
 	{
@@ -451,7 +468,7 @@ void PrintMaze(int PlayerX, int PlayerY)
 	}
 }
 
-void FindStartPosition(int& OutStartX, int& OutStartY)
+void FindStartPosition(int OutStartX, int OutStartY)
 {
 	for (int y = 0; y < MazeHeight; y++)
 	{
@@ -553,6 +570,19 @@ MoveDirection GetMoveInput(int MoveFlags)
 	}
 
 	return Direction;
+}
+
+float CriticalCalculate(float AttackPower)
+{
+
+	int Critical = 0;
+	float Damage = 0;
+
+	Damage = AttackPower;
+	if (rand() % 10 == Critical) {
+		Damage *= 2;
+	}
+	return Damage;
 }
 
 

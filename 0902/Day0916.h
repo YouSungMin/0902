@@ -6,7 +6,9 @@ public:
 
 	void ClassInstance();
 	void ClassInstance2();
-
+	void TestTiger();
+	void TestBird();
+	void TestCat();
 private:
 
 };

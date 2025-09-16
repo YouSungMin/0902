@@ -72,10 +72,10 @@ void Day0912_Position()
 
 	Position sum = p1 + p2;   // sum.x == 7, sum.y == 4
 	Position diff = p1 - p2;  // diff.x == -3, diff.y == 2
-	Monster mon;
+	//Monster mon;
 
-	printf("p1 = (%d,%d) \np2 = (%d,%d)\n", p1.x, p1.y, p2.x, p2.y);
-	printf("sum = (%d,%d) \ndiff = (%d,%d)\n",sum.x,sum.y,diff.x,diff.y);
-	printf("Monster HP:%f\nAttackPower:%f\nItem:%d",mon.Health,mon.AttackPower,mon.Item);
+	//printf("p1 = (%d,%d) \np2 = (%d,%d)\n", p1.x, p1.y, p2.x, p2.y);
+	//printf("sum = (%d,%d) \ndiff = (%d,%d)\n",sum.x,sum.y,diff.x,diff.y);
+	//printf("Monster HP:%f\nAttackPower:%f\nItem:%d",mon.Health,mon.AttackPower,mon.Item);
 }
 

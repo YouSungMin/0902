@@ -17,25 +17,25 @@ void Animal::Move()
 	}
 	else
 	{
-		Energy -= 0.1f;
+		SetEnergy(Energy - 0.1f);
 		printf("%s가 이동했습니다. 남은 에너지 : %.0f%%\n", Name.c_str(), Energy * 100);
 	}
 }
 
 void Animal::Eat()
 {
-	Energy += 0.1f;
+	SetEnergy(Energy + 0.1f);
 	if (Energy > 1.0f)
 	{
-		Energy = 1.0f;
+		SetEnergy(1.0f);
 	}
 	printf("%s가 먹었습니다. 남은 에너지 : %.0f%%\n", Name.c_str(),Energy*100);
 }
 
 void Animal::Sleep()
 {
-	Age++;
-	Energy = 1.0f;
+	SetAge(Age);
+	SetEnergy(1.0f);
 	printf("%s가 잠을 잤습니다. 남은 에너지 : %.0f%%\n", Name.c_str(),Energy*100);
 }
 

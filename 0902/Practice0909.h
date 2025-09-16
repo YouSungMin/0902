@@ -1,5 +1,6 @@
 #pragma once
 #include "Practice0912.h"
+#include "Player.h"
 void Day0909();
 void Day09091();
 void PointerParameter(int* pNumber);
@@ -48,7 +49,7 @@ enum MoveDirection
 
 
 
-void ReadMapFile();
+//void ReadMapFile();
 
 /// <summary>
 /// 미로를 출력하는 함수
@@ -62,7 +63,7 @@ void PrintMaze(int PlayerX, int PlayerY);
 /// </summary>
 /// <param name="OutStartX">플레이어의 시작위치(X) 출력용파라메터</param>
 /// <param name="OutStartY">플레이어의 시작위치(Y) 출력용파라메터</param>
-void FindStartPosition(int& OutStartX, int& OutStartY);
+void FindStartPosition(int OutStartX, int OutStartY);
 
 /// <summary>
 /// 플레이어의 현재 위치에서 가능한 이동 경로를 출력하고 모든 경로를 합친 비트 플래그를 반환합니다.
@@ -95,6 +96,6 @@ bool IsEnd(int X, int Y);
 /// <returns>결정된 방향</returns>
 MoveDirection GetMoveInput(int MoveFlags);
 
-void StartBattle(Player* character);
-int DamageCalculate(float AttackPower);
-void HealerEncount(Player* character);
+void StartBattle(Player& character);
+float CriticalCalculate(float AttackPower);
+void HealerEncount(Player& character);

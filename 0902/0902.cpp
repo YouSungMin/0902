@@ -22,7 +22,7 @@
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    srand(time(0));
+    srand(time(NULL));
     //Practice09061();
     //Practice09062();
     //Practice09063();
@@ -55,8 +55,7 @@ int main()
 
     //Practice09091();
     //Practice09092();
-    //Day0911(); //미로 찾기
-    //MazeEscapeRun();
+    Day0911(); //미로 찾기
     
     //ReadFile();
     //Day0910_String();
@@ -68,7 +67,12 @@ int main()
     //Practice09131();
     //PlayBlackjack();
 
-    Day0916 day0916;
+   /* Day0916 day0916;
     day0916.ClassInstance();
     day0916.ClassInstance2();
+    day0916.TestTiger();
+    day0916.TestBird();
+    day0916.TestCat();*/
+
+
 }
