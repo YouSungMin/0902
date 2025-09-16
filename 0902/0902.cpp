@@ -1,7 +1,6 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #define new new(_NORMAL_BLOCK, __FILE__,__LINE__)
 #include <crtdbg.h> 
-
 #include <iostream>
 #include "header.h"
 #include <stdio.h>
@@ -19,7 +18,7 @@
 #include "Practice0912.h"
 #include "Practice0913.h"
 #include "BlackJack.h"
-
+#include "Day0916.h"
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -67,5 +66,9 @@ int main()
     //Day0912_Position();
 
     //Practice09131();
-    PlayBlackjack();
+    //PlayBlackjack();
+
+    Day0916 day0916;
+    day0916.ClassInstance();
+    day0916.ClassInstance2();
 }
