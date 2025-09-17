@@ -4,6 +4,7 @@ class Bird : public Animal
 {
 public:
 	void Fly();
+	virtual void Move() override;
 public:
 	Bird() = default;
 	Bird(std::string InName)
@@ -11,5 +12,6 @@ public:
 	{
 
 	}
+	virtual ~Bird(){};
 };
 

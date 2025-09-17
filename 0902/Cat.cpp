@@ -6,3 +6,8 @@ void Cat::Jump()
 	SetEnergy(Energy - 0.1f);
 	printf("[%s] : 에너지가 10% 감소합니다.\n", Name.c_str());
 }
+
+void Cat::Move()
+{
+	printf("[%s]가 애옹하며 움직입니다.\n", Name.c_str());
+}

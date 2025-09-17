@@ -3,7 +3,7 @@
 class Animal
 {
 public:
-	void Move();
+	virtual void Move() = 0;
 	void Eat();
 	void Sleep();
 	void ShowInfo();
@@ -11,7 +11,9 @@ public:
 	inline const std::string& GetName() const { return Name; }
 	inline const float GetEnergy() const { return Energy; }
 	inline const float GetAge() const { return Age; }
+public:
 	Animal(std::string InName);
+	virtual ~Animal(){}
 
 protected:
 	inline void SetEnergy(float InEnergy)

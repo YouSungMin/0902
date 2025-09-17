@@ -1,5 +1,6 @@
 #pragma once
-class Actor
+#include "ICanBattle.h"
+class Actor : public ICanBattle
 {
 public:
 	void Attack(Actor* Target);

@@ -6,3 +6,8 @@ void Bird::Fly()
 	SetEnergy(Energy - 0.5f);
 	printf("[%s] : 에너지가 50% 감소합니다.\n", Name.c_str());
 }
+
+void Bird::Move()
+{
+	printf("[%s]가 짹짹하며 이동.\n", Name.c_str());
+}
