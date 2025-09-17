@@ -12,7 +12,14 @@ void Practice09091();
 void Practice09092();
 void MazeEscapeRun();
 
-enum MazeTile
+//enum MazeTile
+//{
+//    Path = 0,
+//    Wall = 1,
+//    Start = 2,
+//    End = 3
+//};
+enum class MazeTile
 {
     Path = 0,
     Wall = 1,
@@ -20,7 +27,16 @@ enum MazeTile
     End = 3
 };
 
-enum MoveDirection
+//enum MoveDirection
+//{
+//    DirNone = 0,
+//    DirUp = 1 << 0,
+//    DirDown = 1 << 1,
+//    DirLeft = 1 << 2,
+//    DirRight = 1 << 3
+//};
+
+enum class MoveDirection
 {
     DirNone = 0,
     DirUp = 1 << 0,
@@ -29,6 +45,10 @@ enum MoveDirection
     DirRight = 1 << 3
 };
 
+inline int operator&(int Left, MoveDirection Right)
+{
+    return static_cast<int>(Left & static_cast<int>(Right));
+};
 // 미로 크기가 고정이었을때의 코드
 //const int MazeWidth = 20;
 //const int MazeHeight = 10;

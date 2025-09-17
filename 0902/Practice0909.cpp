@@ -251,8 +251,8 @@ void MazeEscapeRun()
 	*/
 	
 	//Player* character = new Player(0,0);
-	Player character =  Player(1,1);
-
+	Player character =  Player("플레이어", 1, 1);
+	
 	int HealPercent = 0;
 	int BattlePercent = 1;
 	int Percent = 0;
@@ -261,7 +261,7 @@ void MazeEscapeRun()
 
 	printf("~~ 미로 탈출 게임 ~~\n");
 
-	while (character.GetHealPoint() > 0)
+	while (character.GetHealthPoint() > 0)
 	{
 		PrintMaze(character.GetPositionX(), character.GetPositionY());
 
@@ -275,28 +275,28 @@ void MazeEscapeRun()
 		MoveDirection Direction = GetMoveInput(MoveFlags);
 		switch (Direction)
 		{
-		case DirUp:
+		case MoveDirection::DirUp:
 			character.SetPositionY(character.GetPositionY() - 1);
 			break;
-		case DirDown:
+		case MoveDirection::DirDown:
 			character.SetPositionY(character.GetPositionY() + 1);
 			break;
-		case DirLeft:
+		case MoveDirection::DirLeft:
 			character.SetPositionX(character.GetPositionX() - 1);
 			break;
-		case DirRight:
+		case MoveDirection::DirRight:
 			character.SetPositionX(character.GetPositionX() + 1);
 			break;
-		case DirNone:
+		case MoveDirection::DirNone:
 		default:
 			// 있을 수 없음
 			break;
 		}
-		Percent = rand() % 10;
+		Percent = rand() % 2;
 		if (Percent == HealPercent)
 		{
 			if(character.GetGold() > 0)
-				HealerEncount(character);
+				character.HealerEncount();
 		}
 		if (Percent == BattlePercent || Percent == BattlePercent + 1){
 			StartBattle(character);
@@ -333,42 +333,42 @@ void MazeEscapeRun()
 //	printf("%s\n", FileContents.c_str());	// FileContents안에 있는 문자열을 const char*로 돌려주는 함수
 //}
 
-void HealerEncount(Player& character)
-{
-	char Choice = NULL;
-	int endflag = 0;
-	int HealPoint = 0;
-	while (endflag == 0)
-	{
-		printf("치료사를 만났습니다 치료하시겠습니까? (현재 체력:%.1f)\n",character.GetHealPoint());
-		std::cin>>Choice;
-		if(Choice == 'y')
-			while (character.GetGold() > 0)
-			{
-				printf("치료하실 HP만큼 입력해주세요 (HP 1 = 골드 1) (현재 남은 골드 : %d)\n", character.GetGold());
-				std::cin >> HealPoint;
-				if((100 - character.GetHealPoint()) < HealPoint)
-					printf("%0.1f 보다 초과해서 회복할 수 없습니다.\n",(100.0f - character.GetHealPoint()));
-				if(character.GetHealPoint() < HealPoint)
-					printf("골드가 부족합니다.\n");
-				else
-				{
-					character.SetGold(character.GetGold() - HealPoint);
-					character.SetHealPoint(character.GetHealPoint() + HealPoint);
-					printf("%d 만큼 회복 하였습니다.(현재 체력 : %.1f)(현재 남은 골드 : %d)\n",HealPoint,character.GetHealPoint(), character.GetGold());
-					endflag = 1;
-					break;
-				}
-			}
-		else if(Choice == 'n')
-			printf("치료를 거절하셨습니다.\n");
-		else
-		{
-			printf("잘못 입력하셨습니다. 다시 입력해주세요.");
-			continue;
-		}
-	}
-}
+//void HealerEncount(Player& character)
+//{
+//	char Choice = NULL;
+//	int endflag = 0;
+//	int HealPoint = 0;
+//	while (endflag == 0)
+//	{
+//		printf("치료사를 만났습니다 치료하시겠습니까? (현재 체력:%.1f)\n",character.GetHealPoint());
+//		std::cin>>Choice;
+//		if(Choice == 'y')
+//			while (character.GetGold() > 0)
+//			{
+//				printf("치료하실 HP만큼 입력해주세요 (HP 1 = 골드 1) (현재 남은 골드 : %d)\n", character.GetGold());
+//				std::cin >> HealPoint;
+//				if((100 - character.GetHealPoint()) < HealPoint)
+//					printf("%0.1f 보다 초과해서 회복할 수 없습니다.\n",(100.0f - character.GetHealPoint()));
+//				if(character.GetHealPoint() < HealPoint)
+//					printf("골드가 부족합니다.\n");
+//				else
+//				{
+//					character.SetGold(character.GetGold() - HealPoint);
+//					character.SetHealPoint(character.GetHealPoint() + HealPoint);
+//					printf("%d 만큼 회복 하였습니다.(현재 체력 : %.1f)(현재 남은 골드 : %d)\n",HealPoint,character.GetHealPoint(), character.GetGold());
+//					endflag = 1;
+//					break;
+//				}
+//			}
+//		else if(Choice == 'n')
+//			printf("치료를 거절하셨습니다.\n");
+//		else
+//		{
+//			printf("잘못 입력하셨습니다. 다시 입력해주세요.");
+//			continue;
+//		}
+//	}
+//}
 
 void StartBattle(Player& character)
 {
@@ -397,7 +397,7 @@ void StartBattle(Player& character)
 	}
 
 	printf("전투가 발생했습니다. \n");
-	while (Enemy.GetHealPoint()> 0 && character.GetHealPoint() > 0) {
+	while (Enemy.GetHealthPoint()> 0 && character.GetHealthPoint() > 0) {
 
 		printf("턴을 시작하려면 1을 입력해주세요");
 		std::cin >> Turn;
@@ -405,22 +405,22 @@ void StartBattle(Player& character)
 			continue;
 
 		Damage = CriticalCalculate(character.GetAttackPower());
-		Enemy.SetHealPoint(Enemy.GetHealPoint() - Damage);
+		Enemy.SetHealthPoint(Enemy.GetHealthPoint() - Damage);
 		printf("플레이어가 %.1f의 데미지를 입혔습니다.\n", Damage);
-		if (Enemy.GetHealPoint() <= 0)
+		if (Enemy.GetHealthPoint() <= 0)
 		{
-			printf("%s의 체력 : %.1f\n",Enemy.GetName().c_str(), Enemy.GetHealPoint());
+			printf("%s의 체력 : %.1f\n",Enemy.GetName().c_str(), Enemy.GetHealthPoint());
 			break;
 		}
-		printf("%s의 체력 : %.1f\n", Enemy.GetName().c_str(),Enemy.GetHealPoint());
+		printf("%s의 체력 : %.1f\n", Enemy.GetName().c_str(),Enemy.GetHealthPoint());
 
 
 		Damage = CriticalCalculate(Enemy.GetAttackPower());
-		character.SetHealPoint(character.GetHealPoint() - Damage);
+		character.SetHealthPoint(character.GetHealthPoint() - Damage);
 		printf("%s가 %.1f의 데미지를 입혔습니다.\n", Enemy.GetName().c_str(), Damage);
-		printf("플레이어의 체력 : %.1f\n", character.GetHealPoint());
+		printf("플레이어의 체력 : %.1f\n", character.GetHealthPoint());
 	}
-	if (Enemy.GetHealPoint() == 0)
+	if (Enemy.GetHealthPoint() == 0)
 	{ 
 		printf("플레이어 승리 \n");
 		character.SetGold(character.GetGold()+Enemy.GetGold());
@@ -443,19 +443,19 @@ void PrintMaze(int PlayerX, int PlayerY)
 			{
 				printf("P ");
 			}
-			else if (Maze[y][x] == Wall)
+			else if (Maze[y][x] == static_cast<int>(MazeTile::Wall))
 			{
 				printf("# ");
 			}
-			else if (Maze[y][x] == Path)
+			else if (Maze[y][x] == static_cast<int>(MazeTile::Path))
 			{
 				printf(". ");
 			}
-			else if (Maze[y][x] == Start)
+			else if (Maze[y][x] == static_cast<int>(MazeTile::Start))
 			{
 				printf("S ");
 			}
-			else if (Maze[y][x] == End)
+			else if (Maze[y][x] == static_cast<int>(MazeTile::End))
 			{
 				printf("E ");
 			}
@@ -474,7 +474,7 @@ void FindStartPosition(int OutStartX, int OutStartY)
 	{
 		for (int x = 0; x < MazeWidth; x++)
 		{
-			if (Maze[y][x] == Start)
+			if (Maze[y][x] == static_cast<int>(MazeTile::Start))
 			{
 				OutStartX = x;
 				OutStartY = y;
@@ -488,28 +488,28 @@ void FindStartPosition(int OutStartX, int OutStartY)
 
 int PrintAvailableMoves(int PlayerX, int PlayerY)
 {
-	int MoveFlags = DirNone;
+	int MoveFlags = static_cast<int>(MoveDirection::DirNone);
 
 	printf("이동할 수 있는 방향을 선택하세요 (w:위 a:왼쪽 s:아래쪽 d:오른쪽):\n");
 	if (!IsWall(PlayerX, PlayerY - 1))
 	{
 		printf("W(↑) ");
-		MoveFlags |= DirUp;
+		MoveFlags |= static_cast<int>(MoveDirection::DirUp);
 	}
 	if (!IsWall(PlayerX, PlayerY + 1))
 	{
 		printf("S(↓) ");
-		MoveFlags |= DirDown;
+		MoveFlags |= static_cast<int>(MoveDirection::DirDown);
 	}
 	if (!IsWall(PlayerX - 1, PlayerY))
 	{
 		printf("A(←) ");
-		MoveFlags |= DirLeft;
+		MoveFlags |= static_cast<int>(MoveDirection::DirLeft);
 	}
 	if (!IsWall(PlayerX + 1, PlayerY))
 	{
 		printf("D(→) ");
-		MoveFlags |= DirRight;
+		MoveFlags |= static_cast<int>(MoveDirection::DirRight);
 	}
 	printf("\n");
 
@@ -521,20 +521,20 @@ bool IsWall(int X, int Y)
 	bool isWall = false;
 	if (Y < 0 || Y >= MazeHeight ||
 		X < 0 || X >= MazeWidth ||
-		Maze[Y][X] == Wall)
+		Maze[Y][X] == static_cast<int>(MazeTile::Wall))
 		isWall = true;
 	return isWall;
 }
 
 bool IsEnd(int X, int Y)
 {
-	return Maze[Y][X] == End;
+	return Maze[Y][X] == static_cast<int>(MazeTile::End);
 }
 
 MoveDirection GetMoveInput(int MoveFlags)
 {
 	char InputChar = 0;
-	MoveDirection Direction = DirNone;
+	MoveDirection Direction = MoveDirection::DirNone;
 
 	while (true)
 	{
@@ -542,27 +542,27 @@ MoveDirection GetMoveInput(int MoveFlags)
 		std::cin >> InputChar;
 
 		if ((InputChar == 'w' || InputChar == 'W')
-			&& (MoveFlags & DirUp) /*!= 0*/)
+			&& (MoveFlags & (MoveDirection::DirUp)) /*!= 0*/)
 		{
-			Direction = DirUp;
+			Direction = (MoveDirection::DirUp);
 			break;
 		}
 		if ((InputChar == 's' || InputChar == 'S')
-			&& (MoveFlags & DirDown) /*!= 0*/)
+			&& (MoveFlags & MoveDirection::DirDown) /*!= 0*/)
 		{
-			Direction = DirDown;
+			Direction = (MoveDirection::DirDown);
 			break;
 		}
 		if ((InputChar == 'a' || InputChar == 'A')
-			&& (MoveFlags & DirLeft) /*!= 0*/)
+			&& (MoveFlags & MoveDirection::DirLeft) /*!= 0*/)
 		{
-			Direction = DirLeft;
+			Direction = MoveDirection::DirLeft;
 			break;
 		}
 		if ((InputChar == 'd' || InputChar == 'D')
-			&& (MoveFlags & DirRight) /*!= 0*/)
+			&& (MoveFlags & MoveDirection::DirRight) /*!= 0*/)
 		{
-			Direction = DirRight;
+			Direction = MoveDirection::DirRight;
 			break;
 		}
 

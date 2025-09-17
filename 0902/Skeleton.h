@@ -3,7 +3,7 @@
 class Skeleton : public Monster
 {
 public:
-	void BoneThrowing();
+	virtual void UseSkil()override;
 public:
 	Skeleton() = default;
 	Skeleton(std::string InName)

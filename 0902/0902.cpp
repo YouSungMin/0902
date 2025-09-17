@@ -56,7 +56,7 @@ int main()
 
     //Practice09091();
     //Practice09092();
-    //Day0911(); //미로 찾기
+    Day0911(); //미로 찾기
     
     //ReadFile();
     //Day0910_String();
@@ -75,8 +75,8 @@ int main()
     day0916.TestBird();
     day0916.TestCat();*/
 
-    Day0917 day0917;
-    //day0917.TestPolymorphism();
-    day0917.TestPractice1();
+   //Day0917 day0917;
+   //day0917.TestPolymorphism();
+   //day0917.TestPractice1();
 
 }

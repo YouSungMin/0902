@@ -3,7 +3,7 @@
 class Zombie : public Monster
 {
 public:
-	void Bite();
+	virtual void UseSkil()override;
 public:
 	Zombie() = default;
 	Zombie(std::string InName)

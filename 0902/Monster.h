@@ -5,6 +5,7 @@ class Monster : public Actor
 {
 public:
 	inline const std::string& GetName() const { return Name; }
+	virtual float UseSkil(float InDamage)override;
 public:
 	Monster() = default;
 	Monster(std::string InName)

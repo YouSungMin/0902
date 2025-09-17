@@ -3,7 +3,7 @@
 class Oak : public Monster
 {
 public:
-	void RockThrowing();
+	virtual float UseSkil(float InDamage)override;
 public:
 	Oak() = default;
 	Oak(std::string InName)

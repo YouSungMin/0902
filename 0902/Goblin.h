@@ -3,7 +3,7 @@
 class Goblin : public Monster
 {
 public:
-	void DoubleAttack();
+	virtual float UseSkil(float InDamage)override;
 public:
 	Goblin() = default;
 	Goblin(std::string InName)

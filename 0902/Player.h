@@ -2,7 +2,10 @@
 #include "Actor.h"
 class Player : public Actor
 {
+
 public:
+	void HealerEncount();
+	void StartBattle();
 	inline const int GetPositionX() const { return PositionX; }
 	inline const int GetPositionY() const { return PositionY; }
 	inline void SetPositionX(int InPositionX)
@@ -13,14 +16,16 @@ public:
 	{
 		PositionY = InPositionY;
 	}
+public:
 	Player() = default;
-	Player(int InPositionX, int InPositionY)
-		:PositionX(InPositionX),PositionY(InPositionY)
+	Player(const char* InName,int InPositionX, int InPositionY)
+		:Actor(InName),PositionX(InPositionX),PositionY(InPositionY)
 	{
 		HealthPoint = 100.0f;
 		AttackPower = 10.0f;
 		Gold = 0;
 	}
+	virtual ~Player(){};
 private:
 	int PositionX = 0;
 	int PositionY = 0;

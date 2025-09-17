@@ -3,20 +3,27 @@
 class Actor : public ICanBattle
 {
 public:
-	void Attack(Actor* Target);
-	void TakeDamage(float InDamage);
-	
-	
+	Actor() = default;
+	Actor(const char* InName)
+		:Name(InName)
+	{
+	}
+
+	virtual void ApplyDamage(ICanBattle* InTarget)override;
+	virtual void TakeDamage(float InDamage)override;
+	virtual float UseSkil(float InDamage);
+	virtual float CriticalAttack(float InDamage);
+
 	inline bool IsAlive(){ return HealthPoint > 0; }
-	inline const float GetHealPoint() const { return HealthPoint; }
+	inline const float GetHealthPoint() const { return HealthPoint; }
 	inline const float GetAttackPower() const { return AttackPower; }
 	inline const int GetGold() const { return Gold; }
-	inline void SetHealPoint(float InHealPoint)
+	inline void SetHealthPoint(float InHealPoint)
 	{
 		HealthPoint = InHealPoint;
-		if (HealthPoint < 0)
+		if (HealthPoint > MaxHealth)
 		{
-			HealthPoint = 0;
+			HealthPoint = MaxHealth;
 		}
 
 	}
@@ -29,8 +36,10 @@ public:
 		Gold = InGold;
 	}
 protected:
-	float HealthPoint;
-	float AttackPower;
+	std::string Name = "╬вем";
+	float HealthPoint = 100.0f;
+	float AttackPower = 10.0f;
+	float MaxHealth = 100.0f;
 	int Gold;
 };
 

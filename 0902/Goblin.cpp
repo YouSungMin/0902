@@ -1,6 +1,7 @@
 #include "Goblin.h"
 
-void Goblin::DoubleAttack()
+float Goblin::UseSkil(float InDamage)
 {
-	printf("%s가 두번치기를 사용했습니다.",Name.c_str());
+	printf("%s가 [두번 때리기] 스킬을 사용했습니다.", Name.c_str());
+	return 0.0f;
 }
