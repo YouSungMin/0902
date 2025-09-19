@@ -1,5 +1,6 @@
 #pragma once
 #include "ICanBattle.h"
+#include <string>
 class Actor : public ICanBattle
 {
 public:

@@ -20,6 +20,8 @@
 #include "BlackJack.h"
 #include "Day0916.h"
 #include "Day0917.h"
+#include "Day0918.h"
+#include "Day0919.h"
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -56,7 +58,7 @@ int main()
 
     //Practice09091();
     //Practice09092();
-    Day0911(); //미로 찾기
+    //Day0911(); //미로 찾기
     
     //ReadFile();
     //Day0910_String();
@@ -79,4 +81,12 @@ int main()
    //day0917.TestPolymorphism();
    //day0917.TestPractice1();
 
+   /*Day0918 day0918;
+   day0918.TestSingleLinkedList();
+   day0918.TestDoublyLinkedList();*/
+
+   Day0919 day0919;
+   //day0919.TestStack();
+   //day0919.TestQueue();
+   day0919.TestQueue2();
 }

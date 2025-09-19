@@ -3,7 +3,7 @@
 class Skeleton : public Monster
 {
 public:
-	virtual void UseSkil()override;
+	virtual float UseSkil(float InDamage)override;
 public:
 	Skeleton() = default;
 	Skeleton(std::string InName)

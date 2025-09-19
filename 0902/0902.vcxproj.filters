@@ -22,6 +22,9 @@
     <Filter Include="미로관련">
       <UniqueIdentifier>{a7ad77de-781b-4579-a503-ffb0936d1eb9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="자료구조">
+      <UniqueIdentifier>{984d4a3f-3b4d-4f1e-a325-74cbaf556367}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="0902.cpp">
@@ -104,6 +107,27 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>미로관련</Filter>
+    </ClCompile>
+    <ClCompile Include="Day0918.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>자료구조</Filter>
+    </ClCompile>
+    <ClCompile Include="DLinkedList.cpp">
+      <Filter>자료구조</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedStack.cpp">
+      <Filter>자료구조</Filter>
+    </ClCompile>
+    <ClCompile Include="Day0919.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularQueue.cpp">
+      <Filter>자료구조</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularQueue2.cpp">
+      <Filter>자료구조</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +220,27 @@
     </ClInclude>
     <ClInclude Include="ICanBattle.h">
       <Filter>미로관련</Filter>
+    </ClInclude>
+    <ClInclude Include="Day0918.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>자료구조</Filter>
+    </ClInclude>
+    <ClInclude Include="DLinkedList.h">
+      <Filter>자료구조</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedStack.h">
+      <Filter>자료구조</Filter>
+    </ClInclude>
+    <ClInclude Include="Day0919.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularQueue.h">
+      <Filter>자료구조</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularQueue2.h">
+      <Filter>자료구조</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
