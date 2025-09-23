@@ -23,6 +23,7 @@
 #include "Day0918.h"
 #include "Day0919.h"
 #include "Day0922.h"
+#include "Day0923.h"
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -91,6 +92,8 @@ int main()
    //day0919.TestQueue();
    //day0919.TestQueue2();
 
-   Day0922 day0922;
-   day0922.TestTree();
+   //Day0922 day0922;
+   //day0922.TestTree();
+   Day0923 day0923;
+   day0923.TestTemplateClass();
 }

@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,6 +140,7 @@
     <ClCompile Include="Day0918.cpp" />
     <ClCompile Include="Day0919.cpp" />
     <ClCompile Include="Day0922.cpp" />
+    <ClCompile Include="Day0923.cpp" />
     <ClCompile Include="DLinkedList.cpp" />
     <ClCompile Include="FixedStack.cpp" />
     <ClCompile Include="Goblin.cpp" />
@@ -172,11 +174,13 @@
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CircularQueue.h" />
     <ClInclude Include="CircularQueue2.h" />
+    <ClInclude Include="Coordinate.h" />
     <ClInclude Include="Day0916.h" />
     <ClInclude Include="Day0917.h" />
     <ClInclude Include="Day0918.h" />
     <ClInclude Include="Day0919.h" />
     <ClInclude Include="Day0922.h" />
+    <ClInclude Include="Day0923.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="FixedStack.h" />
     <ClInclude Include="Goblin.h" />
