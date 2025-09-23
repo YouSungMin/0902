@@ -95,5 +95,8 @@ int main()
    //Day0922 day0922;
    //day0922.TestTree();
    Day0923 day0923;
-   day0923.TestTemplateClass();
+   //day0923.TestTemplateClass();
+   //day0923.TestCalculator();
+   //day0923.TestVector();
+   day0923.TestVectorPractice();
 }

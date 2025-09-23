@@ -131,6 +131,7 @@
     <ClCompile Include="BinarySearchTree2.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="BlackJack.cpp" />
+    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CircularQueue.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="BinarySearchTree2.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="BlackJack.h" />
+    <ClInclude Include="Calculator.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CircularQueue.h" />
