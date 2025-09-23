@@ -22,6 +22,7 @@
 #include "Day0917.h"
 #include "Day0918.h"
 #include "Day0919.h"
+#include "Day0922.h"
 int main()
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -85,8 +86,11 @@ int main()
    day0918.TestSingleLinkedList();
    day0918.TestDoublyLinkedList();*/
 
-   Day0919 day0919;
+   //Day0919 day0919;
    //day0919.TestStack();
    //day0919.TestQueue();
-   day0919.TestQueue2();
+   //day0919.TestQueue2();
+
+   Day0922 day0922;
+   day0922.TestTree();
 }

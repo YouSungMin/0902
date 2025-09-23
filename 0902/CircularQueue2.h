@@ -22,8 +22,8 @@ public:
 		}
 	}
 
-	CircularQueue2(const CircularQueue&) = delete;
-	CircularQueue2& operator=(const CircularQueue2&) = delete;
+	CircularQueue2(const CircularQueue2&) = delete;	// 복사 생성자는 없음
+	CircularQueue2& operator=(const CircularQueue2&) = delete;	// 대입 연산자가 없음
 
 	void Enqueue(int InValue);
 	int Dequeue();

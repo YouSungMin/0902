@@ -126,6 +126,8 @@
     <ClCompile Include="0902.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="BinarySearchTree.cpp" />
+    <ClCompile Include="BinarySearchTree2.cpp" />
     <ClCompile Include="Bird.cpp" />
     <ClCompile Include="BlackJack.cpp" />
     <ClCompile Include="Car.cpp" />
@@ -136,6 +138,7 @@
     <ClCompile Include="Day0917.cpp" />
     <ClCompile Include="Day0918.cpp" />
     <ClCompile Include="Day0919.cpp" />
+    <ClCompile Include="Day0922.cpp" />
     <ClCompile Include="DLinkedList.cpp" />
     <ClCompile Include="FixedStack.cpp" />
     <ClCompile Include="Goblin.cpp" />
@@ -161,6 +164,8 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="BinarySearchTree2.h" />
     <ClInclude Include="Bird.h" />
     <ClInclude Include="BlackJack.h" />
     <ClInclude Include="Car.h" />
@@ -171,6 +176,7 @@
     <ClInclude Include="Day0917.h" />
     <ClInclude Include="Day0918.h" />
     <ClInclude Include="Day0919.h" />
+    <ClInclude Include="Day0922.h" />
     <ClInclude Include="DLinkedList.h" />
     <ClInclude Include="FixedStack.h" />
     <ClInclude Include="Goblin.h" />
